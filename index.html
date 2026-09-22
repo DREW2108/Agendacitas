@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgendaCitas</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="doctorView" class="app">
+        <aside class="sidebar">
+            <div class="logo">✚ <span>Agenda</span>Citas</div>
+
+            <div class="menu">
+                <button class="menu-active">▣ Consultorio</button>
+                <button id="historyButton">◷ Historial</button>
+            </div>
+
+            <p class="online">● Sistema conectado</p>
+        </aside>
+
+        <main class="content">
+            <header>
+                <div>
+                    <p class="tag">PANEL DEL MÉDICO</p>
+                    <h1>Gestión de llamados</h1>
+                    <p class="subtitle">Llama pacientes y anúncialos en la sala de espera.</p>
+                </div>
+
+                <div class="actions">
+                    <button id="themeButton">☼ Modo claro</button>
+                    <button id="testSound">♬ Probar sonido</button>
+                    <button id="openScreen">↗ Abrir pantalla</button>
+                </div>
+            </header>
+
+            <section class="grid">
+                <div class="glass-card">
+                    <p class="tag">NUEVO LLAMADO</p>
+                    <h2>¿A quién llamamos?</h2>
+
+                    <form id="callForm">
+                        <label for="patientName">Nombre completo del paciente</label>
+                        <input id="patientName" type="text" placeholder="Ej. María Fernanda López" required>
+
+                        <div class="two-columns">
+                            <div>
+                                <label for="roomNumber">Consultorio</label>
+                                <select id="roomNumber">
+                                    <option value="1">Consultorio 1</option>
+                                    <option value="2">Consultorio 2</option>
+                                    <option value="3" selected>Consultorio 3</option>
+                                    <option value="4">Consultorio 4</option>
+                                    <option value="5">Consultorio 5</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="specialty">Especialidad</label>
+                                <select id="specialty">
+                                    <option>Medicina general</option>
+                                    <option>Pediatría</option>
+                                    <option>Odontología</option>
+                                    <option>Cardiología</option>
+                                    <option>Laboratorio</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <label class="voice-option">
+                            <input id="repeatVoice" type="checkbox" checked>
+                            <span>🔊 Anunciar nombre por voz</span>
+                        </label>
+
+                        <button class="call-button" type="submit">♬ Llamar paciente</button>
+                    </form>
+                </div>
+
+                <div class="glass-card preview">
+                    <p class="tag">VISTA PREVIA</p>
+
+                    <div class="mini-screen">
+                        <p>ES TU TURNO</p>
+                        <h2 id="previewName">Tu nombre aparecerá aquí</h2>
+                        <span>DIRÍGETE AL</span>
+                        <strong id="previewRoom">CONSULTORIO 3</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section id="historySection">
+                <div class="history-header">
+                    <div>
+                        <p class="tag">ACTIVIDAD</p>
+                        <h2>Últimos llamados</h2>
+                    </div>
+
+                    <button id="clearHistory">Limpiar historial</button>
+                </div>
+
+                <div id="historyList" class="history-list">
+                    <p class="empty">Aún no hay pacientes llamados.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <section id="screenView" class="tv-screen" hidden>
+        <div class="tv-header">
+            <div class="tv-logo">✚ Agenda<span>Citas</span></div>
+            <div id="tvClock"></div>
+        </div>
+
+        <div class="tv-content">
+            <p id="tvStatus">BIENVENIDOS</p>
+            <h1 id="tvName">Espere su llamado</h1>
+            <p id="tvInstruction">Nuestro equipo le avisará cuando sea su turno.</p>
+
+            <div id="tvRoom" class="tv-room">
+                CONSULTORIO <strong>—</strong>
+            </div>
+        </div>
+
+        <footer>Por favor permanezca atento a la pantalla</footer>
+    </section>
+
+    <div id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
