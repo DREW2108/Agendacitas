@@ -4,47 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgendaCitas</title>
-
+    <title>Agenda Médica</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div id="doctorView" class="app">
+    <section id="doctorView" class="app">
         <aside class="sidebar">
-            <div class="logo">✚ <span>Agenda</span>Citas</div>
+            <div class="logo">✚ <span>Agenda</span> Médica</div>
 
-            <div class="menu">
-                <button class="menu-active">▣ Consultorio</button>
-                <button id="historyButton">◷ Historial</button>
-            </div>
+            <nav>
+                <button id="doctorButton" class="nav-button active">▣ Consultorio</button>
+                <button id="historyButton" class="nav-button">◷ Historial</button>
+            </nav>
 
-            <p class="online">● Sistema conectado</p>
+            <p class="connection">● Sistema conectado</p>
         </aside>
 
         <main class="content">
-            <header>
+            <header class="header">
                 <div>
                     <p class="tag">PANEL DEL MÉDICO</p>
-                    <h1>Gestión de llamados</h1>
-                    <p class="subtitle">Llama pacientes y anúncialos en la sala de espera.</p>
+                    <h1>Gestión de pacientes</h1>
+                    <p class="subtitle">Registra y llama a los pacientes.</p>
                 </div>
 
-                <div class="actions">
-                    <button id="themeButton">☼ Modo claro</button>
-                    <button id="testSound">♬ Probar sonido</button>
-                    <button id="openScreen">↗ Abrir pantalla</button>
+                <div class="header-actions">
+                    <button id="themeButton" class="glass-button">☼ Modo claro</button>
+                    <button id="soundButton" class="glass-button">♬ Probar sonido</button>
+                    <button id="screenButton" class="glass-button">↗ Abrir pantalla TV</button>
                 </div>
             </header>
 
-            <section class="grid">
-                <div class="glass-card">
+            <section id="doctorSection" class="main-grid">
+                <article class="glass-card">
                     <p class="tag">NUEVO LLAMADO</p>
-                    <h2>¿A quién llamamos?</h2>
+                    <h2>Datos del paciente</h2>
 
-                    <form id="callForm">
-                        <label for="patientName">Nombre completo del paciente</label>
+                    <form id="appointmentForm">
+                        <label for="patientName">Nombre completo</label>
                         <input id="patientName" type="text" placeholder="Ej. María Fernanda López" required>
+
+                        <label for="patientId">Cédula</label>
+                        <input id="patientId" type="text" inputmode="numeric" placeholder="Ej. 1020304050" required>
 
                         <div class="two-columns">
                             <div>
@@ -59,72 +61,80 @@
                             </div>
 
                             <div>
-                                <label for="specialty">Especialidad</label>
-                                <select id="specialty">
-                                    <option>Medicina general</option>
-                                    <option>Pediatría</option>
-                                    <option>Odontología</option>
-                                    <option>Cardiología</option>
-                                    <option>Laboratorio</option>
+                                <label for="reason">Consulta</label>
+                                <select id="reason">
+                                    <option value="Medicina general">Medicina general</option>
+                                    <option value="Pediatría">Pediatría</option>
+                                    <option value="Cardiología">Cardiología</option>
+                                    <option value="Laboratorio">Laboratorio</option>
                                 </select>
                             </div>
                         </div>
 
-                        <label class="voice-option">
-                            <input id="repeatVoice" type="checkbox" checked>
+                        <label class="voice-row">
+                            <input id="voiceEnabled" type="checkbox" checked>
                             <span>🔊 Anunciar nombre por voz</span>
                         </label>
 
                         <button class="call-button" type="submit">♬ Llamar paciente</button>
                     </form>
-                </div>
+                </article>
 
-                <div class="glass-card preview">
+                <article class="glass-card">
                     <p class="tag">VISTA PREVIA</p>
 
-                    <div class="mini-screen">
+                    <div class="preview-screen">
                         <p>ES TU TURNO</p>
-                        <h2 id="previewName">Tu nombre aparecerá aquí</h2>
-                        <span>DIRÍGETE AL</span>
+                        <h2 id="previewName">Nombre del paciente</h2>
+                        <span id="previewReason">MEDICINA GENERAL</span>
                         <strong id="previewRoom">CONSULTORIO 3</strong>
                     </div>
-                </div>
+                </article>
             </section>
 
-            <section id="historySection">
-                <div class="history-header">
+            <section id="historySection" class="history-section">
+                <div class="section-header">
                     <div>
-                        <p class="tag">ACTIVIDAD</p>
-                        <h2>Últimos llamados</h2>
+                        <p class="tag">ACTIVIDAD DEL DÍA</p>
+                        <h2>Historial de llamados</h2>
                     </div>
 
-                    <button id="clearHistory">Limpiar historial</button>
+                    <button id="clearHistory" class="glass-button">Limpiar historial</button>
                 </div>
 
                 <div id="historyList" class="history-list">
-                    <p class="empty">Aún no hay pacientes llamados.</p>
+                    <p class="empty-message">Aún no hay pacientes llamados.</p>
                 </div>
             </section>
         </main>
-    </div>
+    </section>
 
     <section id="screenView" class="tv-screen" hidden>
-        <div class="tv-header">
-            <div class="tv-logo">✚ Agenda<span>Citas</span></div>
+        <header class="tv-header">
+            <div class="tv-logo">✚ Agenda <span>Médica</span></div>
             <div id="tvClock"></div>
-        </div>
+        </header>
 
-        <div class="tv-content">
+        <main class="tv-main">
             <p id="tvStatus">BIENVENIDOS</p>
             <h1 id="tvName">Espere su llamado</h1>
-            <p id="tvInstruction">Nuestro equipo le avisará cuando sea su turno.</p>
+            <p id="tvReason">Nuestro equipo le avisará cuando sea su turno.</p>
 
             <div id="tvRoom" class="tv-room">
                 CONSULTORIO <strong>—</strong>
             </div>
-        </div>
 
-        <footer>Por favor permanezca atento a la pantalla</footer>
+            <section class="tv-history">
+                <h2>Últimos llamados</h2>
+                <div id="tvHistoryList">
+                    <p>Aún no hay llamados.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="tv-footer">
+            Por favor permanezca atento a la pantalla
+        </footer>
     </section>
 
     <div id="toast"></div>
